@@ -1,0 +1,48 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: modules/core
+  data:
+    path: modules/data
+
+  cupertino_icons: ^1.0.2
+  timeago: ^3.1.0
+  sprintf: ^6.0.0
+  intl: ^0.17.0
+  bloc: ^7.0.0
+  flutter_bloc: ^7.0.1
+  equatable: ^2.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  fcoregen:
+    path: ..
+
+flutter:
+  uses-material-design: true
+
+fcoregen:
+  scan_dir:
+    - submodules
+    - plugins
+  dir_update: lib
+  extensions: 
+    - dart
+  copyright: "Copyright 2021 Fighttech, Ltd. All right reserved."
+
+  folderLocalization: "lib/resources/localizations"
+  # fileCSV: "resources/localizations/data.csv"
+  fileGoogleSheet:
+    docsId: "1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il7-zMxvbHikI"
+    sheetId: "0"
+  
