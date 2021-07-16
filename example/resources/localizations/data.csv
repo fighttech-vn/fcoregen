@@ -1,0 +1,170 @@
+,id,detail,en,vi
+,hello,,Hello,Xin chào
+,common.friend,,Friend,Bạn
+,common.edit,,Edit,Sửa
+,common.download,,Download,Tải về
+,common.share,,Share,Chia sẻ
+,common.save,,Save,Lưu
+,common.saved,,Saved,Đã lưu
+,common.somethingWrong,,Something went wrong!,Đã có lỗi xảy ra !
+,common.selectVideo,,Select Video,Chọn Video
+,common.report,,Report,Báo cáo
+,common.yes,,Yes,Có
+,common.no,,No,Không
+,common.ok,,OK,Đồng ý
+,common.done,,Done,Xong
+,common.cancel,,Cancel,Huỷ
+,common.cancel2,,Cancel,Huỷ bỏ
+,common.delete,,Delete,Xoá
+,common.message,,Message,Tin nhắn
+,common.on,,On,Mở
+,common.off,,Off,Tắt
+,common.leave,,Leave,Rời khỏi
+,common.next,,Next,Tiếp tục
+,common.skip,,Skip,Bỏ qua
+,common.woman,,Woman,Nữ
+,common.man,,Man,Nam
+,common.custom,,Custom,Điều chỉnh
+,common.admin,,Admin,Admin
+,common.search,,Search,Tìm kiếm
+,common.posts,,Posts,Bài viết
+,common.follow,,Follow,Theo dõi
+,common.followers,,Followers,Người theo dõi
+,common.seeMore,,See More,Xem thêm
+,common.dataNotFound,,Not found data!,Không tìm thấy dữ liệu
+,common.countinue,,Countinue,Tiếp tục
+,common.loading,,Loading...,Đang thực hiện...
+,common.hour,,Hour,Giờ
+,common.minute,,Minute,Phút
+,common.bottombar.home,,Home,Trang chủ
+,common.confirm,,Confirm,Xác nhận
+,common.close,,Close,Đóng
+,common.vip,,"VIP",VIP
+,common.correct,,Correct,"Đúng"
+,common.wrong,,Wrong,Sai
+,common.did,,Did,Đã làm
+,common.send,,Send,Gửi
+,common.bottombar.statistics,,Statistics,Thống kê
+,common.bottombar.notification,,Notification,Thông báo
+,common.bottombar.competition,,Competition,Thi đấu
+,common.bottombar.profile,,Profile,Cá nhân
+,common.week,,Week,Tuần
+,common.month,,Month,Tháng
+,common.year,,Year,Năm
+,common.month_1,,January,Tháng 1
+,common.month_2,,February,Tháng 2
+,common.month_3,,March,Tháng 3
+,common.month_4,,April,Tháng 4
+,common.month_5,,May,Tháng 5
+,common.month_6,,June,Tháng 6
+,common.month_7,,July,Tháng 7
+,common.month_8,,August,Tháng 8
+,common.month_9,,September,Tháng 9
+,common.month_10,,October,Tháng 10
+,common.month_11,,November,Tháng 11
+,common.month_12,,December,Tháng 12
+,DialogExit.title,,Exit,Thoát
+,DialogExit.desc,,Are you sure you want to exit?,Bạn có chắc muốn thoát?
+,GradeSelection.title,,Select Grade,Chọn lớp
+,GradeSelection.listGrade,,LIST GRADE,DANH SÁCH LỚP
+,Dashboard.comingSoon,,"Building construction, please come back later","Chức năng đang được xây dựng, mời bạn quay lại sau"
+,HomePage.grade,,Grade %s,Lớp %s
+,HomePage.feedbackTitle,,Your evaluation,Đánh giá của bạn
+,HomePage.feedbackDesc,,It would be great to receive your review to improve the quality of the product !,Sẽ thật tuyệt vời nếu nhận được đánh giá của bạn nhằm nâng cao chất lượng sản phẩm !
+,editProfile.title,,Info Account,Thông tin tài khoản
+,ExamSelection.times,,%s times,Lần %s
+,ExamQuestion.seeMore,,See more...,... Xem thêm
+,ExamQuestion.questionOther,,Rest %s/%s,Còn lại %s/%s
+,Login.loginWithApple,,Login with Apple ID,Đăng nhập bằng Apple ID
+,Login.loginWithFacebook,,Login with Facebook,Đăng nhập bằng Facebook
+,Login.loginWithEmail,,Login with Email,Đăng nhập bằng Email
+,Login.loginToContinue,,Login for Continue,Đăng nhập để tiếp tục
+,Login.term1,,Login with system means you agree to,Đăng nhập hệ thống nghĩa là bạn đã đồng ý với 
+,Login.term2,,Terms of use,Điều khoản sử dụng
+,Login.term3,,Ours,của chúng tôi
+,Account.title,,Title,Tài khoản
+,Account.normalUser,,Normal User,Thành viên tiêu chuẩn
+,Account.proUser,,Pro User,Thành viên VIP
+,Account.expiryDate,,Use up to %s,Sử dụng đến %s
+,Account.extension,,Extension,Gia hạn
+,Account.upgrade,,Upgrade,Nâng cấp
+,Account.nickname,,Nickname,Biệt danh
+,Account.dateOfBirth,,Date of birth,Ngày sinh
+,Account.gender,,gender,Giới tính
+,Account.phone,,Phone,Điện thoại
+,Account.update,,Update,Cập nhật
+,Account.maxLengthNickNameMsg,,maller nickname limit %d,Giới hạn nickname nhỏ hơn %d
+,Notification.title,,Notification,Thông báo
+,Your.title,,For You,Của bạn
+,Profile.title,,Account,Tài khoản
+,Profile.guestTitle,,Login,Đăng nhập
+,Profile.guestDesc,,To have a better experience and receive extremely attractive gifts !,Để được trải nghiệm tốt hơn và nhận được các phần quà vô cùng hấp dẫn !
+,Profile.target,,Setup target,Thiết lập mục tiêu
+,Profile.exerciseDone,,Exercise Done,Bài đã làm
+,Profile.statistic,,Statistic,Thống kê
+,Profile.genaralSetting,,Genaral Setting,Cài đặt chung
+,Profile.logout,,Logout,Đăng xuất
+,Profile.delete,,Delete account,Xoá tài khoản
+,Profile.references,,Introduce ChinhXac.Vn,Giới thiệu ChinhXac.Vn
+,Profile.earnMoney,,Earn Money,Kiếm xu
+,Profile.giftCode,,Gift Code,Đổi mã
+,Referral.title,,Referrer Code,Mã Người Giới Thiệu
+,Profile.rateApp,,Rate,Đánh giá
+,Profile.contact,,Contact,Liên hệ
+,Profile.yourReferencesCodeIs,,Your References Code Is %s,Mã của bạn là %s
+,Profile.updateApp,,Update App,Cập nhật ứng dụng
+,Profile.refCode,,Referrer Code Enter,Nhập mã giới thiệu
+,Setting.title,,Setting,Cài đặt
+,Setting.sound,,sound,Âm thanh
+,Setting.notification,,Notification,Thông báo
+,Setting.isDark,,Dark Mode,Chế độ tối
+,Setting.deviceCode,,Device Code,Mã thiết bị
+,Setting.deleteCache,,Delete Cached,Xoá cache
+,Setting.tutorial,,Tutorial,Hướng dẫn
+,Setting.version,,VERSION %s,PHIÊN BẢN %s
+,Setting.clearCache.succeed,,Clear cache succeed.,Đã xoá bộ nhớ tạm.
+,Setting.versionLatest,,The latest app version has been updated,Phiên bản ứng dụng mới nhất đã được cập nhật
+,Setting.deleteTitle,,Delete,Xoá
+,Setting.deleteCacheDesc,,Are you sure you want to delete cache data?,Bạn có chắc muốn xoá dữ liệu cache?
+,Setting.deleteAccountDesc,,Are you sure you want to delete account?,Bạn có chắc muốn xoá dữ liệu tài khoản?
+,Setting.logoutTitle,,Exit,Thoát
+,Setting.logoutDesc,,Are you sure you want to logout?,Bạn có chắc muốn thoát?
+,QuestList.title,,Mission,Nhiệm Vụ
+,Objective.title,,Setup target,Thiết Lập Mục Tiêu
+,Objective.pleaseChoose,,Please Choose,Thiết lập
+,Objective.youCanEditInSetting,,Can you edit it in the app's personal settings,Bạn có thể chỉnh sửa trong phần cài đặt cá nhân của ứng dụng
+,Objective.repeat,,Repeat,Lặp lại
+,Congratulations.title,,Congratulations on getting it,Chúc mừng bạn đã nhận được
+,Congratulations.description,,"Continue to refer \""Chính Xác\"" to receive more gifts !","Tiếp tục giới thiệu \""Chính Xác\"" để nhận thêm nhiều quà tặng khác nhé !"
+,GiftCode.title,,Redeem Bonus Code,Đổi Mã Thưởng
+,GiftCode.hint,,Gift Code Enter,Nhập mã thưởng
+,RefCode.hint,,Referrer Code,Nhập mã giới thiệu
+,topicAnalysis.title,,Analysis,Phân Tích Kết Quả
+,topicAnalysis.genaral.title,,GENERAL STATISTICS,THỐNG KÊ CHUNG
+,topicAnalysis.archivement.title,,YOUR ACHIEVEMENT,THÀNH TÍCH CỦA BẠN
+,topicAnalysis.wrong.title,,Wrong,Sai
+,topicAnalysis.correct.title,,Correct,Đúng
+,topicAnalysis.detail.title,,DETAIL,CHI TIẾT
+,topicAnalysis.question.title,,Question,Câu hỏi
+,topicAnalysis.result.title,,Result,Kết quả
+,topicAnalysis.unit.title,,Sentences,câu
+,topicAnalysis.view.title,,View,Xem
+,statisticsPage.title,,Statistics,Thống kê
+,statisticsPage.month.title,,Month,Tháng
+,statisticsPage.datetime.title,,Time,Thời gian
+,statisticsPage.sentencesAmount.title,,Amount,Số Câu
+,statisticsPage.workHour.title,,Time,Thời lượng
+,statisticsPage.total.title,,Total,Tổng
+,statisticsPage.rightRate.title,,% right,% đúng
+,statisticsPage.learnTime.title,,LEARNING DURATION,THỜI LƯỢNG LUYỆN TẬP
+,statisticsPage.correctRate.title,,CORRECT RATE,TỶ LỆ LÀM ĐÚNG BÀI
+,statisticsPage.timeline.title,,TIMELINE,DÒNG THỜI GIAN
+,statisticsPage.correct.title,,correcr,đúng
+,membership.title,,Gold Member,Thành viên vàng
+,membership.description.prerogative,,Gold Membership prerogative,Đặc Quyền Thành Viên Vàng
+,membership.description.noAds,,Contains no ads,Không chứa quảng cáo
+,membership.description.bonusPoint,,Get more bonus points,Nhận nhiều điểm thưởng hơn
+,membership.description.support,,Prioritize support when support,Ưu tiên hỗ trợ khi có nhu cầu
+,membership.selececMembershipPackage,,Select Membership Package,Chọn gói VIP
+,QuestionResult.title,,Result,Kết Quả
+,QuestionResult.analyzeMsg,,It is not possible to analyze the results until you have completed the entire question,Không thể phân tích kết quả khi bạn chưa hoàn thành toàn bộ câu hỏi
