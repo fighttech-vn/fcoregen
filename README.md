@@ -58,6 +58,19 @@ flutter pub run fcoregen:localization
 ```
 flutter pub run fcoregen:new-feat
 ```
+
+## Feature Generate Fastlane
+
+```
+// All Platform
+flutter pub run fcoregen:fastlane
+
+// Platform Android
+flutter pub run fcoregen:fastlane android
+
+// Platform IOS
+flutter pub run fcoregen:fastlane ios
+```
 ## call test dart
 ```
 dart test 'test/fcoregen_test.dart'
