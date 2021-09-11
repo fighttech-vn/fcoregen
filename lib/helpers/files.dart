@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import '../contracts.dart';
+
 class FilesHelper {
   static Future<bool> createFolder(String folder) async {
-    final folderFeature = Directory('$folder');
+    final folderFeature = Directory(folder);
     final checkExist = await folderFeature.exists();
     if (checkExist) {
-      print('[Error] Folder $folder is exist!');
+      printLog('[Error] Folder $folder is exist!');
       return false;
     }
 
@@ -19,7 +21,7 @@ class FilesHelper {
     required String content,
     bool isCreateNew = false,
   }) async {
-    final runBash = File('$pathFile');
+    final runBash = File(pathFile);
     final runBashExists = await runBash.exists();
 
     if (!runBashExists) {
@@ -34,16 +36,17 @@ class FilesHelper {
   }
 
   static Future<String?>? readFile({required String pathFile}) async {
-    final runBash = File('$pathFile');
+    final runBash = File(pathFile);
     final runBashExists = await runBash.exists();
     if (!runBashExists) {
       return '';
     }
-    return (await runBash.readAsStringSync());
+    final result = await runBash.readAsString();
+    return result;
   }
 
   static Future<List<FileSystemEntity>> dirContents(String path) {
-    final dir = Directory('$path');
+    final dir = Directory(path);
     var files = <FileSystemEntity>[];
     var completer = Completer<List<FileSystemEntity>>();
     var lister = dir.list(recursive: false);

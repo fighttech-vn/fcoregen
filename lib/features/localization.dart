@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fcoregen/helpers/helpers.dart';
+import '../helpers/helpers.dart';
 
 class Localization {
   final String folderSaveLanguage;
@@ -21,23 +21,26 @@ class Localization {
     final listLang = await _loadLanguages();
     if (listLang.isNotEmpty) {
       for (var item in listLang) {
-        await _createFileLanguage(item['key'], item['translate']);
-        await _importInternationalizationFile(item['key']);
+        if (item['key'] != null && item['translate'] != null) {
+          await _createFileLanguage(item['key'] as String,
+              Map<String, dynamic>.from(item['translate'] as Map));
+          await _importInternationalizationFile(item['key'] as String);
+        }
       }
     }
   }
 
-  Future<List<Map>> _loadLanguages() async {
+  Future<List<Map<String, dynamic>>> _loadLanguages() async {
     if (dataLanguage.isEmpty) {
       return [];
     }
 
     final indexID = dataLanguage[0].indexWhere((element) => element == 'id');
-    List<Map> listLanguages = [];
+    List<Map<String, dynamic>> listLanguages = [];
     for (var i = indexID + 1; i < dataLanguage[0].length; i++) {
       final item = '${dataLanguage[0][i]}';
       if (item.length == 2) {
-        Map itemMap = {'index': i, 'key': dataLanguage[0][i]};
+        var itemMap = {'index': i, 'key': dataLanguage[0][i]};
         listLanguages.add(itemMap);
       }
     }
@@ -49,15 +52,16 @@ class Localization {
           language['translate'] = {};
         }
         language['translate']
-            .addAll({'${item[indexID]}': '${item[language['index']]}'});
+            .addAll({'${item[indexID]}': '${item[language['index'] as int]}'});
       }
     }
 
     return listLanguages;
   }
 
-  Future<void> _createFileLanguage(String langCode, Map contentLanguage) async {
-    var content = '${jsonEncode(contentLanguage)}'
+  Future<void> _createFileLanguage(
+      String langCode, Map<String, dynamic> contentLanguage) async {
+    var content = jsonEncode(contentLanguage)
         .replaceAll('{', '\t{\n\t')
         .replaceAll('","', '",\n\t"')
         .replaceAll('":"', '": "')
@@ -74,7 +78,7 @@ const lang${langCode.toUpperCase()} =$content
   }
 
   Future<void> _importInternationalizationFile(String langCode) async {
-    final runFile = File('$internationalizationFile');
+    final runFile = File(internationalizationFile);
     final runFileExists = await runFile.exists();
     if (!runFileExists) {
       return;
@@ -86,7 +90,7 @@ const lang${langCode.toUpperCase()} =$content
     }
 
     bool hadCode = false;
-    final keyFind =
+    const keyFind =
         'static final Map<String, Map<String, dynamic>> translations';
     final indexF = result.indexOf(keyFind);
 
@@ -103,7 +107,7 @@ const lang${langCode.toUpperCase()} =$content
 
     final array01 = subString02.split('}');
 
-    List<Map> listData = [];
+    List<Map<String, dynamic>> listData = [];
     for (var item in array01) {
       final arrayLang = item.split('{');
       final code = arrayLang.first
@@ -113,9 +117,9 @@ const lang${langCode.toUpperCase()} =$content
           .replaceAll(':', '');
       if (code.isNotEmpty) {
         listData.add({'code': code});
-        if (code == langCode) {
-          hashCode == true;
-        }
+        // if (code == langCode) {
+        //   hashCode == true;
+        // }
         final info = arrayLang.last;
         for (var itemInfo in info.split(',')) {
           if (itemInfo.contains('language')) {
@@ -142,7 +146,7 @@ const lang${langCode.toUpperCase()} =$content
     }
     if (!hadCode) {
       listData.add({
-        'code': '$langCode',
+        'code': langCode,
         'language': 'lang${langCode.toUpperCase()}',
         'timeago': '${langCode[0].toUpperCase()}${langCode[1]}Messages()'
       });
@@ -188,7 +192,7 @@ const lang${langCode.toUpperCase()} =$content
 
       var topString = finalStringStart.substring(0, firstPart);
 
-      if (topString[topString.length - 1] == "\n") {
+      if (topString[topString.length - 1] == '\n') {
         topString = topString.substring(0, topString.length - 1);
       }
 

@@ -1,27 +1,28 @@
 import 'dart:io';
 
-import 'package:fcoregen/contracts.dart';
 import 'package:yaml/yaml.dart';
+
+import '../contracts.dart';
 
 class ConfigYamlHelper {
   static void checkConfig(Map<String, dynamic> config, FCoreGenType type) {
     switch (type) {
       case FCoreGenType.copyright:
         if (!config.containsKey('copyright')) {
-          print('Your `fcoregen` section does not contain a `copyright` or '
+          printLog('Your `fcoregen` section does not contain a `copyright` or '
               '`copyright`.');
           exit(1);
         }
 
         if (!config.containsKey('extensions')) {
-          print('Your `fcoregen` section does not contain a `extensions` or '
+          printLog('Your `fcoregen` section does not contain a `extensions` or '
               '`extensions`.');
           exit(1);
         }
         break;
       case FCoreGenType.localization:
         if (!config.containsKey('folderLocalization')) {
-          print(
+          printLog(
               'Your `fcoregen` section does not contain a `folderLocalization` or '
               '`folderLocalization`.');
           exit(1);
@@ -29,9 +30,10 @@ class ConfigYamlHelper {
 
         if (!config.containsKey('fileCSV') &&
             !(config.containsKey('fileGoogleSheet') &&
-                config['fileGoogleSheet']?.containsKey('docsId') &&
-                config['fileGoogleSheet']?.containsKey('sheetId'))) {
-          print('Your `fcoregen` section does not contain a `fileCSV` or '
+                (config['fileGoogleSheet'] as YamlMap).containsKey('docsId') &&
+                (config['fileGoogleSheet'] as YamlMap)
+                    .containsKey('sheetId'))) {
+          printLog('Your `fcoregen` section does not contain a `fileCSV` or '
               '`fileGoogleSheet`. Please provide fileCSV if you use CSV file to generate language, or provide correct docsId and sheetId information of fileGoogleSheet field if you use Google Sheet to generate language.');
           exit(1);
         }
@@ -51,9 +53,9 @@ class ConfigYamlHelper {
       filePath = 'pubspec.yaml';
     }
 
-    final Map yamlMap = loadYaml(File(filePath).readAsStringSync());
+    final yamlMap = loadYaml(File(filePath).readAsStringSync()) as Map;
 
-    if (!(yamlMap['fcoregen'] is Map)) {
+    if (yamlMap['fcoregen'] is! Map) {
       throw Exception('Your `$filePath` file does not contain a '
           '`fcoregen` section.');
     }
@@ -63,14 +65,14 @@ class ConfigYamlHelper {
     for (MapEntry<dynamic, dynamic> entry in yamlMap['fcoregen'].entries) {
       if (entry.value is YamlList) {
         var list = <String>[];
-        (entry.value as YamlList).forEach((dynamic value) {
+        for (var value in (entry.value as YamlList)) {
           if (value is String) {
             list.add(value);
           }
-        });
-        config[entry.key] = list;
+        }
+        config[entry.key as String] = list;
       } else {
-        config[entry.key] = entry.value;
+        config[entry.key as String] = entry.value;
       }
     }
     return config;

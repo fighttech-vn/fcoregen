@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../contracts.dart';
 import '../helpers/helpers.dart';
 
 class FeatureCopyRight {
@@ -34,25 +35,25 @@ class FeatureCopyRight {
     _count = 0;
     _validate();
     await _scanObject(dirScan, '_Directory');
-    print("Successfully updated $_count files.");
+    printLog('Successfully updated $_count files.');
     return _count;
   }
 
   void _validate() {
     if (extensions.isEmpty) {
-      print('Please do not leave the file extension empty');
+      printLog('Please do not leave the file extension empty');
       exit(1);
     }
 
     if (contentUpdate.isEmpty) {
-      print('Please enter the information Copyright');
+      printLog('Please enter the information Copyright');
       exit(1);
     }
   }
 
   Future<void> _scanObject(String path, String type,
       {int level = 0, bool scanFull = false}) async {
-    final dirContent = await FilesHelper.dirContents('$path');
+    final dirContent = await FilesHelper.dirContents(path);
     for (var item in dirContent) {
       if ('${item.runtimeType}' == '_Directory') {
         if (_dirCheck.contains(item.path.split('/'.pathPlatForm).last)) {
@@ -69,7 +70,7 @@ class FeatureCopyRight {
 
   Future<void> _updateObject(String path, String type) async {
     if (type == '_Directory') {
-      final dirContent = await FilesHelper.dirContents('$path');
+      final dirContent = await FilesHelper.dirContents(path);
       for (var item in dirContent) {
         if ('${item.runtimeType}' == '_Directory') {
           await _updateObject(item.path, '${item.runtimeType}');
@@ -86,23 +87,23 @@ class FeatureCopyRight {
   }
 
   Future<void> _handleAdd(String path) async {
-    final file = File('$path');
-    final data = await file.readAsLinesSync();
-    if (data.isEmpty || !data.first.contains('$contentUpdate')) {
-      final dataFile = await file.readAsStringSync();
+    final file = File(path);
+    final data = file.readAsLinesSync();
+    if (data.isEmpty || !data.first.contains(contentUpdate)) {
+      final dataFile = file.readAsStringSync();
       file.writeAsStringSync('// $contentUpdate\n');
       file.writeAsStringSync(dataFile, mode: FileMode.append);
-      print('Successfully updated the file $path');
+      printLog('Successfully updated the file $path');
       _count++;
     }
   }
 
   Future<void> _handleRemove(String path) async {
-    final file = File('$path');
-    final data = await file.readAsLinesSync();
+    final file = File(path);
+    final data = file.readAsLinesSync();
     var isRemoved = false;
     if (data.isNotEmpty) {
-      var readLine = await file.readAsLinesSync();
+      var readLine = file.readAsLinesSync();
       if (readLine.isNotEmpty) {
         readLine.removeWhere((ele) {
           if (ele.replaceAll(' ', '') ==
@@ -121,7 +122,7 @@ class FeatureCopyRight {
               file.writeAsStringSync('\n$dataWrite', mode: FileMode.append);
             }
           }
-          print('Successfully remove the file $path');
+          printLog('Successfully remove the file $path');
           _count++;
         }
       }

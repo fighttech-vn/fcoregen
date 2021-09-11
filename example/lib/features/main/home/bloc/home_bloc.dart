@@ -1,3 +1,4 @@
+// Copyright 2021 Fighttech, Ltd. All right reserved.
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';

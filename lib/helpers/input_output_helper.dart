@@ -20,7 +20,7 @@ class InputOutputHelper {
   }
 
   static Future<String?> enterText() async {
-    var text = await stdin.readLineSync(encoding: Encoding.getByName('utf-8')!);
+    var text = stdin.readLineSync(encoding: Encoding.getByName('utf-8')!);
     return text;
   }
 

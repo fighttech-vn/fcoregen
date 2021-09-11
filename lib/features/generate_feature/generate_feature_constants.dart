@@ -65,7 +65,7 @@ class GenerateFeatureConstants {
     }
   ];
 
-  static const defineContentsFile = <String, Map>{
+  static const defineContentsFile = <String, Map<String, dynamic>>{
     'bloc': {
       'content': templateBlocFile,
       'nameFile': '<Generate|Name>_bloc.dart',

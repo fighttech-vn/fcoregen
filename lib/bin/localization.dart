@@ -1,42 +1,46 @@
 import 'dart:io';
 
+import '../contracts.dart';
 import '../features/localization.dart';
 import '../helpers/helpers.dart';
-import '../contracts.dart';
 
 Future<void> handleLocalization(
     {String? path, required List<String> args}) async {
-  print("Checking data...");
+  printLog('Checking data...');
   var config = ConfigYamlHelper.getConfig(configFile: path);
   ConfigYamlHelper.checkConfig(config, FCoreGenType.localization);
 
   final folderLocalization = config['folderLocalization'];
   var copyright = '';
-  if (config['copyright']?.isNotEmpty ?? false) {
-    copyright = config['copyright'];
+  if (config['copyright'] != null &&
+      (config['copyright'] as String).isNotEmpty) {
+    copyright = config['copyright'] as String;
   }
 
-  print(copyright);
-  var dataLanguage;
-  if (config['fileCSV']?.isNotEmpty ?? false) {
-    print("Read data from file CSV...");
-    dataLanguage = await CSVHelpers.readCSV(config['fileCSV']);
-  } else if ((config['fileGoogleSheet']?.isNotEmpty ?? false)) {
+  printLog(copyright);
+  var dataLanguage = <List<dynamic>>[];
+  if (config['fileCSV'] != null && (config['fileCSV'] as String).isNotEmpty) {
+    printLog('Read data from file CSV...');
+    dataLanguage = await CSVHelpers.readCSV(config['fileCSV'] as String);
+  } else if (config['fileGoogleSheet'] != null &&
+      (config['fileGoogleSheet'] as Map).isNotEmpty) {
     dataLanguage = await GoogleSheetHelpers.downloadGoogleSheet(
-        config['fileGoogleSheet']['docsId'],
-        config['fileGoogleSheet']['sheetId']);
+        config['fileGoogleSheet']['docsId'] as String,
+        config['fileGoogleSheet']['sheetId'] as String);
   }
 
-  final dir = Directory(folderLocalization);
+  final dir = Directory(folderLocalization as String);
   if (!(await dir.exists())) {
-    print('`fcoregen` not found folder $folderLocalization, please try again.');
+    printLog(
+        '`fcoregen` not found folder $folderLocalization, please try again.');
     exit(1);
   }
-  if (dataLanguage?.isEmpty ?? true) {
-    print('`fcoregen` load data is failed, please check data again.');
+
+  if (dataLanguage.isEmpty) {
+    printLog('`fcoregen` load data is failed, please check data again.');
     exit(1);
   }
-  print("Start handle data...");
+  printLog('Start handle data...');
   Localization localization = Localization(
     folderSaveLanguage: folderLocalization,
     internationalizationFile: '$folderLocalization/internationalization.dart',
@@ -44,5 +48,5 @@ Future<void> handleLocalization(
     copyright: copyright,
   );
   await localization.handleLanguage();
-  print("Handle localization done!");
+  printLog('Handle localization done!');
 }

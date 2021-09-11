@@ -25,7 +25,7 @@ void main() {
   group('Handle config file from yaml', () {
     test('Default config', () {
       // Given
-      final yamlDefaultConfig = '''
+      const yamlDefaultConfig = '''
 fcoregen:
   scan_dir:
     - plugins
@@ -53,7 +53,7 @@ fcoregen:
 
     test('Missing Optional Config', () {
       // Given
-      final yamlMissingOptionalConfig = '''
+      const yamlMissingOptionalConfig = '''
 fcoregen:
   scan_dir:
     - plugins
@@ -80,7 +80,7 @@ fcoregen:
 
     test('Missing Config', () {
       // Given
-      final yamlMissingCopyrightConfig = '''
+      const yamlMissingCopyrightConfig = '''
 fcoregen:
   scan_dir:
     - plugins
@@ -106,7 +106,7 @@ fcoregen:
   group('Active handle Copyright', () {
     test('Add Copyright success', () async {
       // Given
-      final yamlDefaultConfig = '''
+      const yamlDefaultConfig = '''
 fcoregen:
   scan_dir:
     - plugins
@@ -125,10 +125,10 @@ fcoregen:
       final Map<String, dynamic>? config =
           ConfigYamlHelper.getConfig(configFile: '../fcoregen_test.yaml');
       FeatureCopyRight feature = FeatureCopyRight(
-        contentUpdate: config!['copyright'],
-        extensions: config['extensions'],
-        scan: config['scan_dir'] ?? <String>[],
-        dirCheck: config['dir_update'],
+        contentUpdate: config!['copyright'] as String,
+        extensions: config['extensions'] as List<String>,
+        scan: (config['scan_dir'] ?? <String>[]) as List<String>,
+        dirCheck: config['dir_update'] as String,
       );
 
       final result = await feature.active(dirScan: '../');
@@ -143,7 +143,7 @@ fcoregen:
 
     test('Remove Copyright success', () async {
       // Given
-      final yamlDefaultConfig = '''
+      const yamlDefaultConfig = '''
 fcoregen:
   scan_dir:
     - plugins
@@ -159,14 +159,14 @@ fcoregen:
           '// Copyright 2021 Fighttech, Ltd. All right reserved.');
 
       // When
-      final isRemove = true;
+      const isRemove = true;
       final Map<String, dynamic>? config =
           ConfigYamlHelper.getConfig(configFile: '../fcoregen_test.yaml');
       FeatureCopyRight feature = FeatureCopyRight(
-        contentUpdate: config!['copyright'],
-        extensions: config['extensions'],
-        scan: config['scan_dir'] ?? <String>[],
-        dirCheck: config['dir_update'],
+        contentUpdate: config!['copyright'] as String,
+        extensions: config['extensions'] as List<String>,
+        scan: (config['scan_dir'] ?? <String>[]) as List<String>,
+        dirCheck: config['dir_update'] as String,
       );
 
       final result = await feature.active(dirScan: '../', isRemove: isRemove);

@@ -1,6 +1,5 @@
+// Copyright 2021 Fighttech, Ltd. All right reserved.
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:data/datasource/local/data_manager/data_manager.dart';
 
 class RouteList {}
 
@@ -23,6 +22,7 @@ class Routes {
     );
   }
 
+  // ignore: strict_raw_type
   static PageRouteBuilder pageRouteBuilder(WidgetBuilder? _builder) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {

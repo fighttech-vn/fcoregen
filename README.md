@@ -31,8 +31,8 @@ fcoregen:
 ```
 Format: https://docs.google.com/spreadsheets/d/<docsId>/edit#gid=<sheetId>
 
-Ex url: https://docs.google.com/spreadsheets/d/1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il7-zMxvbHikI/edit#gid=0
-- docsId: 1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il7-zMxvbHikI
+Ex url: https://docs.google.com/spreadsheets/d/1ZFgJO0zefRW0BiQMIlUwpOx74CrQjOt48INNvxS80a8/edit#gid=0
+- docsId: 1ZFgJO0zefRW0BiQMIlUwpOx74CrQjOt48INNvxS80a8
 - sheetId: 0
 
 ```
@@ -42,7 +42,7 @@ Ex url: https://docs.google.com/spreadsheets/d/1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il
 fcoregen:
   folderLocalization: "lib/resources/localizations"
   fileGoogleSheet:
-    docsId: "1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il7-zMxvbHikI"
+    docsId: "1ZFgJO0zefRW0BiQMIlUwpOx74CrQjOt48INNvxS80a8"
     sheetId: "0"
 ```
 
@@ -56,7 +56,7 @@ flutter pub run fcoregen:localization
 ## Feature Generate Feature
 
 ```
-flutter pub run fcoregen:new-feat
+flutter pub run fcoregen:newfeat
 ```
 ## call test dart
 ```

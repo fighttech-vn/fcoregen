@@ -1,6 +1,11 @@
 enum FCoreGenType { copyright, localization }
 
 class FCoreGenConstant {
-  static final String folderFeatures = 'lib/features';
-  static final String pathRoute = 'lib/features/routes.dart';
+  static const String folderFeatures = 'lib/features';
+  static const String pathRoute = 'lib/features/routes.dart';
+}
+
+void printLog(String log) {
+  // ignore: avoid_print
+  print(log);
 }
