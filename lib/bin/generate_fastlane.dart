@@ -1,7 +1,6 @@
-import 'package:fcoregen/helpers/helpers.dart';
-
 import '../contracts.dart';
 import '../features/generate_fastlane/generate_fastlane.dart';
+import '../helpers/helpers.dart';
 
 Future<void> getGenerateFastlaneFeature(
     {String? path, required List<String> args}) async {

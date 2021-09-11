@@ -41,7 +41,8 @@ class GenerateFeature {
     }
   }
 
-  Future<void> handleListFolder(String pathFolder, List listFolder) async {
+  Future<void> handleListFolder(
+      String pathFolder, List<dynamic> listFolder) async {
     for (var item in listFolder) {
       if ('${item['name']}'.isNotEmpty) {
         final folderCurrent = '$pathFolder/${item['name']}';
@@ -56,14 +57,15 @@ class GenerateFeature {
                 GenerateFeatureConstants.defineContentsFile[fileItem] ?? {};
             final pathFile =
                 _handleString('$folderCurrent/${infoFile['nameFile']}');
-            final content = _handleString(infoFile['content']);
+            final content = _handleString(infoFile['content'] as String);
             FilesHelper.writeFile(pathFile: pathFile, content: content);
           }
         }
 
         if (item['subFolder'] != null &&
             (item['subFolder'] as List).isNotEmpty) {
-          handleListFolder('$pathFolder/${item['name']}', item['subFolder']);
+          handleListFolder(
+              '$pathFolder/${item['name']}', item['subFolder'] as List);
         }
       }
     }
@@ -73,9 +75,9 @@ class GenerateFeature {
     _keyDefine = [
       {
         'key': '<Generate|NameUpperFirst>',
-        'value': '$name'.capitalize,
+        'value': name.capitalize,
       },
-      {'key': '<Generate|Name>', 'value': '${name.toLowerCase()}'},
+      {'key': '<Generate|Name>', 'value': name.toLowerCase()},
     ];
   }
 
@@ -83,7 +85,7 @@ class GenerateFeature {
     var data = content;
 
     for (var item in _keyDefine) {
-      data = data.replaceAll(item['key'], item['value']);
+      data = data.replaceAll(item['key'] as String, item['value'] as String);
     }
     return data;
   }

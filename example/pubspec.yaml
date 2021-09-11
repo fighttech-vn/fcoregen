@@ -43,6 +43,6 @@ fcoregen:
   folderLocalization: "lib/resources/localizations"
   # fileCSV: "resources/localizations/data.csv"
   fileGoogleSheet:
-    docsId: "1TSE0sP8bnnZQHsC8_vdVzxW21mGhr8il7-zMxvbHikI"
+    docsId: "1ZFgJO0zefRW0BiQMIlUwpOx74CrQjOt48INNvxS80a8"
     sheetId: "0"
   

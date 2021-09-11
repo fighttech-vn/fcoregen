@@ -1,5 +1,4 @@
-// Copyright 2021 QSoft, Ltd. All rights reserved.
-
+// Copyright 2021 Fighttech, Ltd. All right reserved.
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class SLocalizationsDelegate extends LocalizationsDelegate<S> {
   @override
   Future<S> load(Locale locale) async {
     translations.forEach((key, value) {
-      timeago.setLocaleMessages(key, value['timeago']);
+      timeago.setLocaleMessages(key, value['timeago'] as LookupMessages);
     });
     timeago.setDefaultLocale(locale.languageCode);
 
@@ -51,8 +50,8 @@ class S {
   S(this.localeName);
 
   bool load(Locale locale) {
-    final Map<String, dynamic> _result =
-        SLocalizationsDelegate.translations[locale.languageCode]!['language'];
+    final Map<String, dynamic> _result = SLocalizationsDelegate
+        .translations[locale.languageCode]!['language'] as Map<String, dynamic>;
 
     _sentences = {};
     _result.forEach((String key, dynamic value) {

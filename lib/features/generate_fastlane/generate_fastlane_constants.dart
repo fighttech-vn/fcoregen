@@ -1,5 +1,4 @@
-import 'package:fcoregen/features/generate_fastlane/templates/fastlane_android.dart';
-
+import 'templates/fastlane_android.dart';
 import 'templates/fastlane_ios.dart';
 
 class GenerateFastlaneConstants {
@@ -74,7 +73,7 @@ class GenerateFastlaneConstants {
     }
   ];
 
-  static final String exampleDocs = '''
+  static const String exampleDocs = '''
 
 ####################################
 ##### Content of fcoregen.yaml #####

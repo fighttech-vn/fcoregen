@@ -1,3 +1,4 @@
+// Copyright 2021 Fighttech, Ltd. All right reserved.
 import 'package:data/datasource/local/data_manager/data_manager.dart';
 
 import '../interactor/home_repository.dart';

@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
 
 import '../contracts.dart';
 import '../features/generate_feature/generate_feature.dart';
@@ -7,7 +7,7 @@ import '../features/generate_feature/generate_feature_constants.dart';
 import '../helpers/helpers.dart';
 
 Future<void> handleGenerateFeature() async {
-  var nameFolder;
+  var nameFolder = '';
   var nameFolderParent = '';
   var createRoute = true;
 

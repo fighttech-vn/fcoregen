@@ -1,12 +1,13 @@
-import 'package:fcoregen/features/generate_fastlane/generate_fastlane_constants.dart';
-import 'package:fcoregen/features/generate_fastlane/templates/fastlane_android.dart';
-import 'package:fcoregen/features/generate_fastlane/templates/fastlane_ios.dart';
-import 'package:fcoregen/helpers/helpers.dart';
 import 'package:universal_io/io.dart';
 
+import '../../helpers/helpers.dart';
+import 'generate_fastlane_constants.dart';
+import 'templates/fastlane_android.dart';
+import 'templates/fastlane_ios.dart';
+
 class GenerateFastlane {
-  late Map<String, dynamic> _config;
-  late String _platform;
+  late final Map<String, dynamic> _config;
+  late final String _platform;
 
   GenerateFastlane(Map<String, dynamic> config, String platform)
       : _config = Map<String, dynamic>.from(config),
@@ -15,10 +16,10 @@ class GenerateFastlane {
   Map<String, dynamic> getDataPlatform(String platform) {
     if (platform.toLowerCase() == 'ios') {
       return Map<String, dynamic>.from(
-          _config[GenerateFastlaneConstants.keyGetConfigIOS]);
+          _config[GenerateFastlaneConstants.keyGetConfigIOS] as Map);
     } else if (platform.toLowerCase() == 'android') {
       return Map<String, dynamic>.from(
-          _config[GenerateFastlaneConstants.keyGetConfigAndroid]);
+          _config[GenerateFastlaneConstants.keyGetConfigAndroid] as Map);
     }
     return {};
   }
@@ -45,7 +46,8 @@ set -e
     final configWithPlatform = getDataPlatform('ios');
     contentFile = contentFile.replaceAll(
         GenerateFastlaneConstants.keyPathFileExportOption,
-        configWithPlatform[GenerateFastlaneConstants.keyPathFileExportOption]);
+        configWithPlatform[GenerateFastlaneConstants.keyPathFileExportOption]
+            as String);
 
     await FilesHelper.writeFile(
         pathFile: './distribution.sh', content: contentFile);
@@ -80,10 +82,11 @@ set -e
       var content = '${file['content']}';
       if (file['data'] != null &&
           (file['data'] is List) &&
-          file['data'].isNotEmpty) {
+          (file['data'] as List).isNotEmpty) {
         for (var data in file['data']) {
           if (configWithPlatform[data] != null) {
-            content = content.replaceAll(data, configWithPlatform[data]);
+            content = content.replaceAll(
+                data as String, configWithPlatform[data] as String);
           }
         }
       }

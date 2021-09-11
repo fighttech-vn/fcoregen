@@ -1,3 +1,4 @@
+// Copyright 2021 Fighttech, Ltd. All right reserved.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
