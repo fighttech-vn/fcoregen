@@ -71,6 +71,35 @@ flutter pub run fcoregen:fastlane android
 // Platform IOS
 flutter pub run fcoregen:fastlane ios
 ```
+Required fastlane.yaml file
+
+```
+####################################
+##### Content of fcoregen.yaml #####
+fcoregen:
+  fastlaneIOS:
+    firebaseAppId: "1:630490387268:ios:7c5fd8e49iksj3355246cd"        # required
+    emailTester: "exampleaccount@gmail.com"                           # required
+    bundleId: "com.example.appmobile"                                 # required
+    teamId: "86PCDKI3HF"                                              # required
+    appAppleId: "2984875825" 
+    emailAppleDevelop: "exampleaccount@gmail.com"                     # required
+    pathFileExportOption: "resources/certs/ExportOptions.plist"       # required - root of path is project folder
+    pathIPA: "../build/ios/ipa/MyApp.ipa"                             # required - root of path is ios folder
+    provisioningAdhoc: "./Profiles/MyApp_Adhoc.mobileprovision"       # required - root of path is ios folder
+    provisioningAppStore: "./Profiles/MyApp_AppStore.mobileprovision" #            root of path is ios folder
+    codeSignIdentifyDistribute: "iPhone Distribution"                 # required - default:iPhone Distribution
+    buildConfiguration: "Release"                                     # required - default:Release
+    
+  fastlaneAndroid:
+    firebaseAppId: "1:630490387268:android:7c5fd8e49iksj3355246cd"    # required
+    emailTester: "exampleaccount@gmail.com"                           # required
+    bundleId: "com.example.appmobile"                                 # required
+
+####################################
+```
+
+
 ## call test dart
 ```
 dart test 'test/fcoregen_test.dart'

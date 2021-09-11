@@ -157,15 +157,19 @@ class ConfigYamlHelper {
     }
   }
 
-  static Map<String, dynamic> getConfig({String? configFile}) {
+  static Map<String, dynamic> getConfig(
+      {String? configFile, FCoreGenType? type}) {
     // if `fcoregen.yaml` exists use it as config file, otherwise use `pubspec.yaml`
-    String filePath;
-    if (configFile != null && File(configFile).existsSync()) {
-      filePath = configFile;
-    } else if (File('fcoregen.yaml').existsSync()) {
-      filePath = 'fcoregen.yaml';
+    String filePath = 'fcoregen.yaml';
+
+    if (type != null && type == FCoreGenType.fastlane) {
+      filePath = 'fastlane.yaml';
     } else {
-      filePath = 'pubspec.yaml';
+      if (configFile != null && File(configFile).existsSync()) {
+        filePath = configFile;
+      } else if (!File(filePath).existsSync()) {
+        filePath = 'pubspec.yaml';
+      }
     }
 
     final Map yamlMap = loadYaml(File(filePath).readAsStringSync());

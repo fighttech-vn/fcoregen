@@ -14,7 +14,8 @@ Future<void> getGenerateFastlaneFeature(
     }
   }
 
-  var config = ConfigYamlHelper.getConfig(configFile: path);
+  var config =
+      ConfigYamlHelper.getConfig(configFile: path, type: FCoreGenType.fastlane);
   ConfigYamlHelper.checkConfig(config, FCoreGenType.fastlane, platform);
   final feature = GenerateFastlane(config, platform);
   feature.run();
