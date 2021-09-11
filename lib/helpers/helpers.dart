@@ -10,3 +10,7 @@ extension StringExt on String {
   String get pathPlatForm => Platform.isWindows ? replaceAll('/', '\\') : this;
   String get capitalize => "${this[0].toUpperCase()}${this.substring(1)}";
 }
+
+void printLog(String message) {
+  stdout.write('\n$message');
+}

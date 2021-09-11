@@ -1,10 +1,13 @@
 import 'dart:io';
-
-import 'package:fcoregen/contracts.dart';
 import 'package:yaml/yaml.dart';
 
+import '../contracts.dart';
+import '../features/generate_fastlane/generate_fastlane_constants.dart';
+import 'helpers.dart';
+
 class ConfigYamlHelper {
-  static void checkConfig(Map<String, dynamic> config, FCoreGenType type) {
+  static void checkConfig(Map<String, dynamic> config, FCoreGenType type,
+      [String platform = 'all']) {
     switch (type) {
       case FCoreGenType.copyright:
         if (!config.containsKey('copyright')) {
@@ -36,19 +39,137 @@ class ConfigYamlHelper {
           exit(1);
         }
         break;
+
+      case FCoreGenType.fastlane:
+        final isExistIOSConfig =
+            config.containsKey('fastlaneIOS') && config['fastlaneIOS'] != null;
+        final isExistAndroidConfig = config.containsKey('fastlaneAndroid') &&
+            config['fastlaneAndroid'] != null;
+
+        if (!isExistIOSConfig && platform == 'ios') {
+          print('Your `fcoregen` section does not contain a `fastlaneIOS` .');
+          exit(1);
+        } else if (!isExistAndroidConfig && platform == 'android') {
+          print(
+              'Your `fcoregen` section does not contain a `fastlaneAndroid`.');
+          exit(1);
+        } else if (!isExistIOSConfig && !isExistAndroidConfig) {
+          print('Your `fcoregen` section does not contain a `fastlaneIOS` and '
+              '`fastlaneAndroid`.');
+          exit(1);
+        }
+
+        var messageError = '';
+        var countError = 0;
+
+        // validate android
+        if (config.containsKey('fastlaneAndroid')) {
+          if (!config['fastlaneAndroid'].containsKey('firebaseAppId') ||
+              config['fastlaneAndroid']['firebaseAppId'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneAndroid] > [firebaseAppId]";
+          }
+
+          if (!config['fastlaneAndroid'].containsKey('emailTester') ||
+              config['fastlaneAndroid']['emailTester'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneAndroid] > [emailTester]";
+          }
+
+          if (!config['fastlaneAndroid'].containsKey('bundleId') ||
+              config['fastlaneAndroid']['bundleId'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneAndroid] > [bundleId]";
+          }
+        }
+
+        // validate ios
+        if (config.containsKey('fastlaneIOS') &&
+            config['fastlaneIOS'] != null) {
+          if (!config['fastlaneIOS'].containsKey('firebaseAppId') ||
+              config['fastlaneIOS']['firebaseAppId'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneIOS] > [firebaseAppId]";
+          }
+          if (!config['fastlaneIOS'].containsKey('emailTester') ||
+              config['fastlaneIOS']['emailTester'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneIOS] > [emailTester]";
+          }
+          if (!config['fastlaneIOS'].containsKey('bundleId') ||
+              config['fastlaneIOS']['bundleId'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneIOS] > [bundleId]";
+          }
+          if (!config['fastlaneIOS'].containsKey('teamId') ||
+              config['fastlaneIOS']['teamId'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneIOS] > [teamId]";
+          }
+          if (!config['fastlaneIOS'].containsKey('emailAppleDevelop') ||
+              config['fastlaneIOS']['emailAppleDevelop'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneIOS] > [emailAppleDevelop]";
+          }
+          if (!config['fastlaneIOS'].containsKey('pathIPA') ||
+              config['fastlaneIOS']['pathIPA'].isEmpty) {
+            countError++;
+            messageError += "\n $countError. [fastlaneIOS] > [pathIPA]";
+          }
+          if (!config['fastlaneIOS'].containsKey('provisioningAdhoc') ||
+              config['fastlaneIOS']['provisioningAdhoc'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneIOS] > [provisioningAdhoc]";
+          }
+          if (!config['fastlaneIOS']
+                  .containsKey('codeSignIdentifyDistribute') ||
+              config['fastlaneIOS']['codeSignIdentifyDistribute'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneIOS] > [codeSignIdentifyDistribute]";
+          }
+          if (!config['fastlaneIOS'].containsKey('buildConfiguration') ||
+              config['fastlaneIOS']['buildConfiguration'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneIOS] > [buildConfiguration]";
+          }
+          if (!config['fastlaneIOS'].containsKey('pathFileExportOption') ||
+              config['fastlaneIOS']['pathFileExportOption'].isEmpty) {
+            countError++;
+            messageError +=
+                "\n $countError. [fastlaneIOS] > [pathFileExportOption]";
+          }
+        }
+
+        if (messageError.isNotEmpty) {
+          printLog('######## List of missing data ########');
+          printLog(messageError);
+          printLog('######################################');
+          printLog(GenerateFastlaneConstants.exampleDocs);
+          exit(1);
+        }
+        break;
       default:
     }
   }
 
-  static Map<String, dynamic> getConfig({String? configFile}) {
+  static Map<String, dynamic> getConfig(
+      {String? configFile, FCoreGenType? type}) {
     // if `fcoregen.yaml` exists use it as config file, otherwise use `pubspec.yaml`
-    String filePath;
-    if (configFile != null && File(configFile).existsSync()) {
-      filePath = configFile;
-    } else if (File('fcoregen.yaml').existsSync()) {
-      filePath = 'fcoregen.yaml';
+    String filePath = 'fcoregen.yaml';
+
+    if (type != null && type == FCoreGenType.fastlane) {
+      filePath = 'fastlane.yaml';
     } else {
-      filePath = 'pubspec.yaml';
+      if (configFile != null && File(configFile).existsSync()) {
+        filePath = configFile;
+      } else if (!File(filePath).existsSync()) {
+        filePath = 'pubspec.yaml';
+      }
     }
 
     final Map yamlMap = loadYaml(File(filePath).readAsStringSync());

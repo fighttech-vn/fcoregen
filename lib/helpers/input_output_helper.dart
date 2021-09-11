@@ -8,8 +8,7 @@ class InputOutputHelper {
   static Future<String> enterFolderFeature() async {
     var nameFolder = await enterNameFolder();
     while (nameFolder?.isEmpty ?? true) {
-      stdout.write('Do you want to continue? (y/n)\n');
-      var recheck = await enterText();
+      var recheck = await enterText('Do you want to continue? (y/n)\n');
       if ((recheck?.isEmpty ?? true) || recheck?.toUpperCase() == 'N') {
         stdout.write('You have chosen to exit. Goodbye!\n');
         exit(0);
@@ -19,14 +18,15 @@ class InputOutputHelper {
     return nameFolder!;
   }
 
-  static Future<String?> enterText() async {
+  static Future<String?> enterText(String message) async {
+    stdout.write('\n$message');
     var text = await stdin.readLineSync(encoding: Encoding.getByName('utf-8')!);
     return text;
   }
 
   static Future<String?> enterNameFolder({bool isScreen = true}) async {
-    stdout.write('Enter ${isScreen ? 'screen' : 'page'} name: ');
-    var screenName = await enterText();
+    var screenName =
+        await enterText('Enter ${isScreen ? 'screen' : 'page'} name: ');
     final dir = Directory('${FCoreGenConstant.folderFeatures}/$screenName');
     final dirExist = await dir.exists();
     if (dirExist) {
