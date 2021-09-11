@@ -11,11 +11,10 @@ Future<void> handleGenerateFeature() async {
   var nameFolderParent = '';
   var createRoute = true;
 
-  stdout.write('''Select feature:
+  var line = await InputOutputHelper.enterText('''Select feature:
 1. Create a new screen
 2. Create a new page
 0. Exit\n >I choose: ''');
-  var line = await InputOutputHelper.enterText();
   var valueChoose = 0;
   try {
     valueChoose = int.tryParse('$line') ?? 0;
@@ -31,18 +30,18 @@ Future<void> handleGenerateFeature() async {
   switch (valueChoose) {
     case 1:
       nameFolder = await InputOutputHelper.enterFolderFeature();
-      stdout.write(
+
+      var recheck = await InputOutputHelper.enterText(
           'Do you want to create a route for the $nameFolder screen? (y/n)\n');
-      var recheck = await InputOutputHelper.enterText();
       if ((recheck?.isEmpty ?? true) || recheck?.toUpperCase() == 'N') {
         createRoute = false;
       }
 
       break;
     case 2:
-      stdout.write(
-          'Enter name folder parent (The folder must be available and located in the folder <your-project>/lib/features): ');
-      nameFolderParent = (await InputOutputHelper.enterText()) ?? '';
+      nameFolderParent = (await InputOutputHelper.enterText(
+              'Enter name folder parent (The folder must be available and located in the folder <your-project>/lib/features): ')) ??
+          '';
       final dir =
           Directory('${FCoreGenConstant.folderFeatures}/$nameFolderParent');
       final dirExist = await dir.exists();

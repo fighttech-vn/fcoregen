@@ -1,4 +1,4 @@
-enum FCoreGenType { copyright, localization }
+enum FCoreGenType { copyright, localization, fastlane }
 
 class FCoreGenConstant {
   static const String folderFeatures = 'lib/features';
