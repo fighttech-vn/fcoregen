@@ -1,3 +1,6 @@
+## 1.0.3
+
+* Add feature gen Fastlane
 ## 1.0.2
 
 * Support flutter 2.5
