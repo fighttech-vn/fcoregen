@@ -97,7 +97,7 @@ class ConfigYamlHelper {
             messageError += '\n $countError. [fastlaneIOS] > [firebaseAppId]';
           }
           if (!configIOS.containsKey('emailTester') ||
-              (configIOS['emailTester'] as List<String>).isEmpty) {
+              (configIOS['emailTester'] as String).isEmpty) {
             countError++;
             messageError += '\n $countError. [fastlaneIOS] > [emailTester]';
           }
