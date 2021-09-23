@@ -1,3 +1,6 @@
+## 1.0.4
+
+* update code gen fastlane
 ## 1.0.3
 
 * Add feature gen Fastlane

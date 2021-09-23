@@ -75,7 +75,7 @@ Required fastlane.yaml file
 
 ```
 ####################################
-##### Content of fcoregen.yaml #####
+##### Content of fastlane.yaml #####
 fcoregen:
   fastlaneIOS:
     firebaseAppId: "1:630490387268:ios:7c5fd8e49iksj3355246cd"        # required
