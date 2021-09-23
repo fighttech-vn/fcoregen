@@ -20,10 +20,9 @@ platform :android do
   desc "Deploy with Fastlane"
 
   lane :upload_to_firebase do |options|
-      if ENV['APP_ID'] && ENV['TESTER'] &&  ENV['NAME_FLAVOR']
+      if ENV['APP_ID'] && ENV['TESTER']
         appId=ENV['APP_ID'] 
         tester=ENV['TESTER'] 
-        flavor=ENV['NAME_FLAVOR'] 
         puts "[Fastlane Android] Load data from ENV successfully!"
 
         firebase_app_distribution(
@@ -32,7 +31,7 @@ platform :android do
           groups: "public_android",
           release_notes: sh("git log -1 --pretty='%s'"),
           firebase_cli_path: "/usr/local/bin/firebase",
-          apk_path: "../build/app/outputs/flutter-apk/app-" + flavor + "-release.apk"
+          apk_path: "../build/app/outputs/flutter-apk/app-release.apk"
         )
       else
         raise RuntimeError, '[Fastlane Android] ENV is not found so Fastlane will stop the process! Please try again!'

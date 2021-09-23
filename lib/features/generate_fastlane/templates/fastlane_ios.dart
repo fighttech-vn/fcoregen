@@ -1,5 +1,5 @@
 const String scriptBuildIOS = '''
-flutter build ipa --flavor production --export-options-plist=pathFileExportOption
+flutter build ipa --export-options-plist=pathFileExportOption
 cd ios/
 fastlane ios upload_to_firebase --env production
 ''';
@@ -39,7 +39,7 @@ platform :ios do
     # )
 
       lane :upload_to_firebase do
-        if (ENV['APP_ID'] && ENV['APP_ID'] != "") && (ENV['TESTER'] && ENV['TESTER'] != "") && ( ENV['NAME_FLAVOR'] && ENV['NAME_FLAVOR'] != "") && (ENV['PATH_IPA'] && ENV['PATH_IPA'] != "")
+        if (ENV['APP_ID'] && ENV['APP_ID'] != "") && (ENV['TESTER'] && ENV['TESTER'] != "") && (ENV['PATH_IPA'] && ENV['PATH_IPA'] != "")
           # Load config from ENV
           appId=ENV['APP_ID'] 
           tester=ENV['TESTER'] 
